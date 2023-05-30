@@ -9,6 +9,7 @@ const app = express()
 const properties = require('./models/properties.js')
 
 const PORT = process.env.PORT || 3003
+const MONGODB_URL = process.env.MONGODB_URL;
 
 //Middleware
 app.use(cors())
@@ -17,7 +18,7 @@ app.use(express.json())
 app.use(methodOverride('_method'))
 app.use('/dwellings', propertiesController)
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
