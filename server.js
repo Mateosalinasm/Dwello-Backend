@@ -28,8 +28,6 @@ db.on('error', (err) => console.log(err.message + ' MongoDB not connected'));
 db.on('connected', () => console.log('MongoDB connected'));
 db.on('disconnected', () => console.log('MongoDB disconnected'));
 
-app.listen(PORT, () => console.log('Listening on port', PORT));
-
 app.get('/', (req, res) => {
     res.send('Dwello')
 })
