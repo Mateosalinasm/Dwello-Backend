@@ -3,10 +3,10 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const cors = require('cors')
 const propertiesController = require('./controllers/properties.js')
+const properties = require('./models/properties.js')
 require('dotenv').config()
 
 const app = express()
-const properties = require('./models/properties.js')
 
 const PORT = process.env.PORT || 3003
 const MONGODB_URL = process.env.MONGODB_URL;
