@@ -17,6 +17,19 @@ app.use(express.json())
 app.use(methodOverride('_method'))
 app.use('/dwellings', propertiesController)
 
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+
+db.on('error', (err) => console.log(err.message + ' MongoDB not connected'));
+db.on('connected', () => console.log('MongoDB connected'));
+db.on('disconnected', () => console.log('MongoDB disconnected'));
+
+app.listen(PORT, () => console.log('Listening on port', PORT));
+
 app.get('/', (req, res) => {
     res.send('Dwello')
 })
