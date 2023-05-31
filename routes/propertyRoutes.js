@@ -1,23 +1,12 @@
-const express = require('express')
-const axios = require('axios')
 const router = express.Router()
-const Property = require('../models/properties.js')
+const propertiesController = require('../controllers/properties.js')
 
 
-//Routes
 
 //Index Route
 router.get('/', (req, res) => {
     console.log('Get Route!')
-    Property.find({}, (err, foundProperties) => {
-        if (err) {
-            console.log(err.message)
-        } else {
-            res.render('dwellings', {
-                properties: foundProperties
-            })
-        }
-    })
+    // propertiesController.
 })
 
 //Create Route
@@ -70,12 +59,12 @@ router.put('/:id', (req, res) => {
         updatedFields.imageSrc = req.body.imageSrc;
     }
 
-    Property.findByIdAndUpdate (
+    Property.findByIdAndUpdate(
         req.params.id,
-        {...updatedFields},
-        {new: true},
+        { ...updatedFields },
+        { new: true },
         (err, updatedProperty) => {
-            if(err) {
+            if (err) {
                 console.log(err.message)
             } else {
                 console.log(updatedProperty)
@@ -88,7 +77,7 @@ router.put('/:id', (req, res) => {
 //Delete Route
 router.delete('/:id', (req, res) => {
     Property.findByIdAndDelete(req.params.id, (err, deletedProperty) => {
-        if(err) {
+        if (err) {
             console.log(err.message)
         } else {
             res.redirect('/dwellings')
@@ -99,7 +88,7 @@ router.delete('/:id', (req, res) => {
 //Edit Form
 router.get('/:id/edit', (req, res) => {
     Property.findById(req.params.id, (err, foundProperty) => {
-        if(err) { console.log(err.message) }
+        if (err) { console.log(err.message) }
         else {
             res.render('#', {
                 product: foundProperty
@@ -107,5 +96,3 @@ router.get('/:id/edit', (req, res) => {
         }
     })
 })
-
-module.exports = router
