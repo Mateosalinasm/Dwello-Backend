@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 const cors = require('cors')
 const propertiesController = require('./controllers/properties.js')
 const properties = require('./models/properties.js')
+const propertyRoutes = require('./routes/propertyRoutes.js')
 require('dotenv').config()
 
 const app = express()
@@ -16,7 +17,7 @@ app.use(cors())
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(methodOverride('_method'))
-app.use('/dwellings', propertiesController)
+app.use('/dwellings', propertyRoutes)
 
 mongoose.connect(MONGODB_URL, {
     useNewUrlParser: true,
@@ -30,7 +31,7 @@ db.on('connected', () => console.log('MongoDB connected'));
 db.on('disconnected', () => console.log('MongoDB disconnected'));
 
 app.get('/', (req, res) => {
-    res.send('Dwello')
+    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' })
 })
 
 app.listen(PORT, () => {
