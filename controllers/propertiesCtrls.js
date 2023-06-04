@@ -1,96 +1,68 @@
-const express = require('express')
-const router = express.Router()
-const Property = require('../models/properties.js')
-const mongoose = require('mongoose')
+const db = require('../models')
 
-const getProperties = async(req, res) => {
-    try {
-        const properties = await Property.find({})
-        console.log('Get Properties: ', properties)
-        res.json(properties)
-    } catch (err) {
-        console.log('Can\'t find Properties', err.message)
-    }
+const getProperties = (req, res) => {
+    db.Property.find({})
+        .then((foundProperties) => {
+            console.log(foundProperties)
+            if (!foundProperties) {
+                res.status(404).json({ message: 'Properties not found' })
+            } else {
+                res.status(200).json({ data: foundProperties })
+            }
+        })
 }
 
 const getPropertyById = async (req, res) => {
-    try {
-        const property = await Property.findById(req.params.id)
-        console.log(property)
-        res.json(property)
-    } catch (err) {
-        console.log('Can\'t find Property', err.message)
-        res.status(400);
-    }
-}
-
-const createProperty = async(req, res) => {
-    try {
-        const {
-            id,
-            name,
-            href,
-            price,
-            description,
-            options,
-            imageSrc, } = req.body
-
-        const createdProperty = await Property.create({
-            id,
-            name,
-            href,
-            price,
-            description,
-            options,
-            imageSrc,
+    db.Property.findById(req.params.id)
+        .then((foundProperty) => {
+            if (!foundProperty) {
+                res.status(404).json({ message: 'Property not found' })
+            } else {
+                res.status(200).json({ data: foundProperty })
+            }
         })
-        res.json(createdProperty)
-    } catch (err) {
-        console.log('Couldn\'t create Property', err.message)
-        res.status(500).json({ error: 'Server error' });
-    }
 }
 
-const deleteProperty = async(req,res) => {
-    try {
-        const { propertyId } = req.params
-        const deleteProperty = await Property.findByIdAndDelete(propertyId)
-        res.json(deleteProperty)
-    } catch (err) {
-        console.log(err.message)
-    }
-}
-
-const updateProperty = async(req, res) => {
-    try {
-        const { propertyId } = req.body
-
-        const {
-            id,
-            name,
-            href,
-            price,
-            description,
-            options,
-            imageSrc, } = req.body
-
-        const updatedProperty = await Property.findByIdAndUpdate(propertyId, {
-            id,
-            name,
-            href,
-            price,
-            description,
-            options,
-            imageSrc,
+const createProperty = async (req, res) => {
+    db.Property.create(req.body)
+        .then((createdProperty) => {
+            if (!createdProperty) {
+                res.status(404).json({ message: 'Can\'t create property' })
+            } else {
+                res.status(201).json({ data: createdProperty })
+            }
         })
-
-        res.json(updatedProperty)
-    } catch (err) {
-        console.log(err.message)
-    }
 }
 
-module.exports = { getProperties, getPropertyById, createProperty, deleteProperty, updateProperty }
+const deleteProperty = async (req, res) => {
+    db.Property.findByIdAndDelete(req.params.id)
+        .then((deletedProperty) => {
+            if (!deletedProperty) {
+                res.status(404).json({ message: 'Couldn\'t delete Property' })
+            } else {
+                res.status(200).json({data: deleteProperty, message: 'Property deleted'})
+            }
+        })
+}
+
+const updateProperty = async (req, res) => {
+    db.Property.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then((updatedProperty) => {
+            if (!updatedProperty) {
+                res.status(404).json({ message: 'Couldn\'t update property' })
+            } else {
+                res.status(200).json({ data: updatedProperty, message: 'Property Updated' })
+            }
+        })
+}
+
+module.exports = { 
+    getProperties, 
+    getPropertyById, 
+    createProperty, 
+    deleteProperty, 
+    updateProperty 
+}
 
 
 // //Create Route
@@ -181,4 +153,4 @@ module.exports = { getProperties, getPropertyById, createProperty, deletePropert
 //     })
 // })
 
-module.exports = router
+// module.exports = router
