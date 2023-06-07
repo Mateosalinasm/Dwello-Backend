@@ -14,19 +14,19 @@ app.use(express.json())
 // app.use('/dwellings', propertyRoutes)
 
 
-app.get('/api/', (req, res) => {
+app.get('/', (req, res) => {
     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' })
 })
 
 const { propertiesCtrls } = require('./controllers')
 
 //ROUTES - METHODS //
-app.get('api/dwellings', propertiesCtrls.getProperties)
-app.get('api/dwellings/:id', propertiesCtrls.getPropertyById)
-app.post('api/dwellings', propertiesCtrls.createProperty)
-app.post('api/dwellings/seed', propertiesCtrls.seedProperty)
-app.put('api/dwellings/:id', propertiesCtrls.updateProperty)
-app.delete('api/:id', propertiesCtrls.deleteProperty)
+app.get('/dwellings', propertiesCtrls.getProperties)
+app.get('/dwellings/:id', propertiesCtrls.getPropertyById)
+app.post('/dwellings', propertiesCtrls.createProperty)
+app.post('/dwellings/seed', propertiesCtrls.seedProperty)
+app.put("/dwellings/:id", propertiesCtrls.updateProperty)
+app.delete('/:id', propertiesCtrls.deleteProperty)
 
 
 app.listen(PORT, () => {
