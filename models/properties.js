@@ -7,6 +7,7 @@ const propertySchema = new mongoose.Schema({
     description: String,
     options: String,
     imageSrc: String,
+    features: { type: Array, "default": [] },
     propertyImages: { type: Array, "default": [] }
 })
 

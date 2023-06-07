@@ -1,10 +1,8 @@
 const express = require('express');
-const methodOverride = require('method-override')
 const cors = require('cors')
-// const propertiesController = require('./controllers/oldCtrls.js')
-// const properties = require('./models/properties.js')
 const propertyRoutes = require('./routes/propertyRoutes.js')
-require('dotenv').config()
+const dotenv = require('dotenv')
+dotenv.config()
 
 const app = express()
 
@@ -14,9 +12,7 @@ const PORT = process.env.PORT || 3003
 app.use(cors())
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(methodOverride('_method'))
 app.use('/dwellings', propertyRoutes)
-
 
 
 app.get('/', (req, res) => {
@@ -26,3 +22,38 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log('Listening on port ', PORT)
 })
+
+// const express = require("express");
+// const cors = require('cors');
+// const app = express();
+// const dotenv = require("dotenv")
+// const mongoose = require("mongoose")
+
+
+// const PORT = process.env.PORT || 4005
+// const propertyRoutes = require("./routes/propertyRoutes")
+// // const authRoute = require("./routes/auth")
+// // const usersRoute = require("./routes/users")
+
+// dotenv.config()
+// app.use(express.json())
+// app.use(cors());
+
+// mongoose.set('strictQuery', true);
+// mongoose
+//     .connect(process.env.MONGODB_URL, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+
+//     })
+//     .then(console.log("Connected to MongoDB"))
+//     .catch((err) => console.log(err));
+
+
+// app.use("/dwellings", propertyRoutes);
+// // app.use("/api/auth", authRoute);
+// // app.use("/api/users", usersRoute);
+
+// app.listen(PORT, () => {
+//     console.log('app is running on port: ', PORT)
+// });
