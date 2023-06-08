@@ -8,7 +8,7 @@ const app = express()
 const PORT = process.env.PORT || 3003
 
 //Middleware
-app.use(cors({ origin: '*' }))
+app.use(cors({ origin: process.env.FRONTEND_DOMAIN || '*' }));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 // app.use('/dwellings', propertyRoutes)
