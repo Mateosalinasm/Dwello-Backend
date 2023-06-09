@@ -39,7 +39,7 @@ const seedProperty = async (req, res) => {
         {
             name: "Oquean",
             price: "from $1000 a night",
-            description: "Beautiful Malibu Beach House",
+            description: "Oquean is one of Malibu's renowned residences, impossible to overlook while traveling along the Pacific Coast Highway, and it was masterfully crafted by the esteemed architect Harry Gesner. Nestled atop the cliffs overlooking the vast Pacific Ocean, Oquean boasts the most breathtaking, uninterrupted panoramic vistas in all of Malibu. This extraordinary abode is an ideal venue for hosting gatherings, offering striking outdoor and indoor areas that showcase the awe-inspiring views from every angle. Indulge in the epitome of luxury and tranquility within this exceptional, contemporary marvel.",
             options: "3 bed | 3.5 baths",
             imageSrc: "/images/Malibu House/day profile.png",
             features: [
@@ -349,102 +349,14 @@ const updateProperty = async (req, res) => {
 }
 
 
+
 module.exports = {
     getProperties,
     getPropertyById,
     createProperty,
     deleteProperty,
     updateProperty,
-    seedProperty
+    seedProperty,
+
 }
 
-
-// //Create Route
-// router.post("/", (req, res) => {
-//     Property.create(req.body, (err, createdProperty) => {
-//         console.log(createdProperty)
-//         res.redirect("dwellings")
-//     })
-// })
-
-// //New Form Route
-// router.get('/new', (req, res) => {
-//     res.render('#')
-// })
-
-// //Show Route
-// router.get('/:id', (req, res) => {
-//     Property.findById(req.params.id, (err, foundProperty) => {
-//         if (err) {
-//             console.log(err.message)
-//         } else {
-//             res.render('#', {
-//                 property: foundProperty
-//             })
-//         }
-//     })
-// })
-
-// router.put('/:id', (req, res) => {
-//     const updatedFields = {};
-//     if (req.body.id != '') {
-//         updatedFields.id = req.body.id
-//     }
-//     if (req.body.name != '') {
-//         updatedFields.name = req.body.name
-//     }
-//     if (req.body.href !== '') {
-//         updatedFields.href = req.body.href;
-//     }
-//     if (req.body.price !== '') {
-//         updatedFields.price = req.body.price;
-//     }
-//     if (req.body.description !== '') {
-//         updatedFields.description = req.body.description;
-//     }
-//     if (req.body.options !== '') {
-//         updatedFields.options = req.body.options;
-//     }
-//     if (req.body.imageSrc !== '') {
-//         updatedFields.imageSrc = req.body.imageSrc;
-//     }
-
-//     Property.findByIdAndUpdate (
-//         req.params.id,
-//         {...updatedFields},
-//         {new: true},
-//         (err, updatedProperty) => {
-//             if(err) {
-//                 console.log(err.message)
-//             } else {
-//                 console.log(updatedProperty)
-//                 res.redirect(`/dwellings/${req.params.id}`)
-//             }
-//         }
-//     )
-// })
-
-// //Delete Route
-// router.delete('/:id', (req, res) => {
-//     Property.findByIdAndDelete(req.params.id, (err, deletedProperty) => {
-//         if(err) {
-//             console.log(err.message)
-//         } else {
-//             res.redirect('/dwellings')
-//         }
-//     })
-// })
-
-// //Edit Form
-// router.get('/:id/edit', (req, res) => {
-//     Property.findById(req.params.id, (err, foundProperty) => {
-//         if(err) { console.log(err.message) }
-//         else {
-//             res.render('#', {
-//                 product: foundProperty
-//             })
-//         }
-//     })
-// })
-
-// module.exports = router

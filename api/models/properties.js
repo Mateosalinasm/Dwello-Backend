@@ -8,7 +8,7 @@ const propertySchema = new mongoose.Schema({
     options: String,
     imageSrc: String,
     features: { type: Array, "default": [] },
-    propertyImages: { type: Array, "default": [] }
+    propertyImages: { type: Array, "default": [] },
 })
 
 const Property = mongoose.model('Property', propertySchema)
