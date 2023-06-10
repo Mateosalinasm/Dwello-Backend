@@ -26,7 +26,7 @@ app.get('/dwellings/:id', propertiesCtrls.getPropertyById)
 app.post('/dwellings', propertiesCtrls.createProperty)
 app.post('/dwellings/seed', propertiesCtrls.seedProperty)
 app.put("/dwellings/:id", propertiesCtrls.updateProperty)
-app.delete('/:id', propertiesCtrls.deleteProperty)
+app.delete('dwellings/:id', propertiesCtrls.deleteProperty)
 
 
 
