@@ -1,3 +1,4 @@
 module.exports = {
-    propertiesCtrls: require('./propertiesCtrls')
+    propertiesCtrls: require('./propertiesCtrls'),
+    bookingsCtrls: require('./bookingsCtrls')
 }

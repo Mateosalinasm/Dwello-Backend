@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors')
+const bcrypt = require('bcrypt')
 // const propertyRoutes = require('./routes/propertyRoutes.js')
 const dotenv = require('dotenv')
 dotenv.config()
@@ -18,7 +19,8 @@ app.get('/', (req, res) => {
     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' })
 })
 
-const { propertiesCtrls } = require('./controllers')
+const { propertiesCtrls, bookingsCtrls } = require('./controllers')
+
 
 //ROUTES - METHODS //
 app.get('/dwellings', propertiesCtrls.getProperties)
@@ -27,6 +29,8 @@ app.post('/dwellings', propertiesCtrls.createProperty)
 app.post('/dwellings/seed', propertiesCtrls.seedProperty)
 app.put("/dwellings/:id", propertiesCtrls.updateProperty)
 app.delete('/dwellings/:id', propertiesCtrls.deleteProperty)
+app.get('/booking', bookingsCtrls.createBooking)
+app.post('/booking', bookingsCtrls.createBooking)
 
 
 

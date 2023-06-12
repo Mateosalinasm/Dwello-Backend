@@ -14,9 +14,13 @@ mongoose.connect(MONGODB_URI, {
 const db = mongoose.connection;
 
 db.on('error', (err) => console.log(err.message + ' MongoDB not connected!!!'));
-db.on('connected', () => console.log('MongoDB connected'));
+db.on('connected', () => {
+  console.log('MongoDB connected');
+});
 db.on('disconnected', () => console.log('MongoDB disconnected'));
 
 module.exports = {
-  Property: require("./properties")
+  Property: require("./properties"),
+  Booking: require("./booking"),
+  User: require("./user")
 }
