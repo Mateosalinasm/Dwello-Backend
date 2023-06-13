@@ -2,6 +2,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 const mongoose = require("mongoose");
+
 const MONGODB_URI = process.env.MONGODB_URI;
 
 //========= DATABASE CONNECTION =====================
@@ -22,5 +23,6 @@ db.on('disconnected', () => console.log('MongoDB disconnected'));
 module.exports = {
   Property: require("./properties"),
   Booking: require("./booking"),
-  User: require("./user")
+  User: require("./user"),
+  Luxe: require('./luxe')
 }

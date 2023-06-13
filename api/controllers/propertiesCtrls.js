@@ -12,6 +12,8 @@ const getProperties = (req, res) => {
         })
 }
 
+
+
 const getPropertyById = async (req, res) => {
     db.Property.findById(req.params.id)
         .then((foundProperty) => {
@@ -357,6 +359,7 @@ module.exports = {
     deleteProperty,
     updateProperty,
     seedProperty,
+
 
 }
 
