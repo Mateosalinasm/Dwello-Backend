@@ -27,16 +27,16 @@ app.get('/dwellings', propertiesCtrls.getProperties)
 app.get('/dwellings/luxe', luxeCtrls.getLuxeProperties)
 app.get('/dwellings/luxe/:id', luxeCtrls.getLuxePropertyById)
 app.get('/dwellings/:id', propertiesCtrls.getPropertyById)
+app.get('/booking', bookingsCtrls.getBookings)
 app.post('/dwellings', propertiesCtrls.createProperty)
 app.post('/dwellings/luxe', luxeCtrls.createLuxeProperty)
 app.post('/dwellings/seed', propertiesCtrls.seedProperty)
 app.post('/dwellings/luxe/seed', luxeCtrls.seedLuxeProperty)
+app.post('/booking', bookingsCtrls.createBooking)
 app.put("/dwellings/:id", propertiesCtrls.updateProperty)
 app.put("/dwellings/luxe/:id", luxeCtrls.updateLuxeProperty)
 app.delete('/dwellings/:id', propertiesCtrls.deleteProperty)
 app.delete('/dwellings/luxe/:id', luxeCtrls.deleteLuxeProperty)
-app.get('/booking', bookingsCtrls.getBookings)
-app.post('/booking', bookingsCtrls.createBooking)
 
 
 
